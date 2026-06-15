@@ -1,0 +1,33 @@
+/* Adattamenti per i controlli Ant Design dentro il pannello impostazioni:
+   il layout/visual resta quello di app.css (riusato dal frontend originale). */
+
+.field .ant-select,
+.field .ant-slider,
+.field .ant-segmented {
+  width: 100%;
+}
+
+.field .ant-segmented {
+  margin-top: 2px;
+}
+
+.field .ant-upload-wrapper {
+  display: block;
+}
+
+/* Lo slider Ant Design eredita il colore primario dal ConfigProvider. */
+.field .ant-slider {
+  margin: 8px 0 4px;
+}
+
+/* La textarea nativa (riusa lo stile app.css) deve restare a tutta larghezza. */
+.field textarea {
+  width: 100%;
+}
+
+/* Root della vista PDF: nessun padding extra, il pane ha già il suo. */
+#pdf-container-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

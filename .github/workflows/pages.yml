@@ -1,0 +1,79 @@
+name: Deploy su GitHub Pages (repo FE)
+
+# Workflow pensato per il repo DEDICATO al solo frontend (AiAnonimyzer_FE), dove
+# i file del FE stanno alla ROOT (vi arrivano dal mirror di public_api/).
+# Nel repo principale questo file NON gira (non è in .github/workflows alla root):
+# serve solo dopo essere stato copiato nel repo FE.
+#
+# Prerequisiti nel repo FE:
+#   - Settings → Pages → Source = "GitHub Actions"
+#   - Settings → Secrets and variables → Actions → Variables:
+#       HF_API_BASE_URL = https://<utente>-<space>.hf.space
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      api_base_url:
+        description: "URL del backend (sovrascrive HF_API_BASE_URL)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        env:
+          VITE_API_BASE_URL: ${{ github.event.inputs.api_base_url || vars.HF_API_BASE_URL }}
+          # project site servito sotto /<repo>/ → base path degli asset
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+        run: |
+          if [ -z "$VITE_API_BASE_URL" ]; then
+            echo "::error::Imposta la variabile di repo HF_API_BASE_URL (o l'input api_base_url) con l'URL del backend Hugging Face."
+            exit 1
+          fi
+          echo "API base: $VITE_API_BASE_URL"
+          echo "Base path: $VITE_BASE_PATH"
+          pnpm build
+          cp dist/index.html dist/404.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
