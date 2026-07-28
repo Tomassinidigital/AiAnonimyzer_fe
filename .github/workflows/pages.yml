@@ -1,0 +1,138 @@
+name: Deploy su GitHub Pages (repo FE)
+
+# Workflow pensato per il repo DEDICATO al solo frontend (AiAnonimyzer_FE), dove
+# i file arrivano dal mirror di questo repo (vedi sync-fe.yml):
+#   • public_api/ → ROOT del repo FE (la SPA principale)
+#   • beta PDF/   → sottocartella beta-pdf/ (il nuovo editor)
+# Nel repo principale questo file NON gira (non è in .github/workflows alla root):
+# serve solo dopo essere stato copiato nel repo FE.
+#
+# Pubblica un unico sito Pages:
+#   • ROOT  → la SPA (solo se è impostata la variabile HF_API_BASE_URL)
+#   • /beta → l'editor (da beta-pdf/), self-contained, con window.BETA_API_BASE
+#             iniettato = HF_API_BASE_URL. Se la SPA è saltata, la root → /beta/.
+#
+# Prerequisiti nel repo FE:
+#   - Settings → Pages → Source = "GitHub Actions"
+#   - (per la SPA a root) Settings → Secrets and variables → Actions → Variables:
+#       HF_API_BASE_URL = https://<utente>-<space>.hf.space
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      api_base_url:
+        description: "URL del backend (sovrascrive HF_API_BASE_URL)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PDFJS_VER: "3.11.174"
+      PDFLIB_VER: "1.17.1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Prepara la cartella di pubblicazione
+        run: mkdir -p dist
+
+      # ---- SPA a root: solo se è configurato il backend HF ----
+      - name: Build SPA
+        id: spa
+        env:
+          VITE_API_BASE_URL: ${{ github.event.inputs.api_base_url || vars.HF_API_BASE_URL }}
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+        run: |
+          if [ -z "$VITE_API_BASE_URL" ]; then
+            echo "::warning::HF_API_BASE_URL non impostata: salto la SPA e pubblico solo /beta."
+            echo "spa_built=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "API base: $VITE_API_BASE_URL"
+          pnpm install --frozen-lockfile
+          pnpm build
+          cp dist/index.html dist/404.html
+          echo "spa_built=true" >> "$GITHUB_OUTPUT"
+
+      # ---- Editor beta sotto /beta (self-contained; backend via BETA_API_BASE) ----
+      - name: Assembla l'editor beta in /beta
+        env:
+          BETA_BACKEND: ${{ github.event.inputs.api_base_url || vars.HF_API_BASE_URL }}
+        run: |
+          if [ ! -d beta-pdf ]; then
+            echo "::warning::cartella beta-pdf/ assente: l'editor non verrà pubblicato."
+            exit 0
+          fi
+          mkdir -p dist/beta/lib
+          cp -r beta-pdf/. dist/beta/
+          curl -sSL "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VER}/pdf.min.js"        -o dist/beta/lib/pdf.min.js
+          curl -sSL "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VER}/pdf.worker.min.js" -o dist/beta/lib/pdf.worker.min.js
+          curl -sSL "https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/${PDFLIB_VER}/pdf-lib.min.js"  -o dist/beta/lib/pdf-lib.min.js
+          sed -i "s|https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VER}/pdf.min.js|lib/pdf.min.js|; s|https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/${PDFLIB_VER}/pdf-lib.min.js|lib/pdf-lib.min.js|" dist/beta/index.html
+          sed -i 's|https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VER}/pdf.worker.min.js|lib/pdf.worker.min.js|' dist/beta/js/pdf-engine.js
+          if [ -n "$BETA_BACKEND" ]; then
+            esc=$(printf '%s' "$BETA_BACKEND" | sed 's/[&|]/\\&/g')
+            sed -i "s|<script src=\"js/pdf-engine.js\"></script>|<script>window.BETA_API_BASE='${esc}';</script>\n  <script src=\"js/pdf-engine.js\"></script>|" dist/beta/index.html
+            echo "BETA_API_BASE iniettato: $BETA_BACKEND"
+          fi
+          echo "Editor beta pubblicato in /beta ($(du -sh dist/beta | cut -f1))"
+
+      # ---- Se la SPA non è stata buildata, la root rimanda a /beta ----
+      - name: Root minimale verso /beta (se manca la SPA)
+        if: steps.spa.outputs.spa_built != 'true'
+        run: |
+          cat > dist/index.html <<'HTML'
+          <!doctype html>
+          <html lang="it"><head><meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>AiAnonimyzer — GitHub Pages</title>
+          <meta http-equiv="refresh" content="0; url=beta/" />
+          <style>body{font-family:system-ui,sans-serif;margin:12vh auto;max-width:520px;text-align:center;color:#0f172a}a{color:#2196f3}</style>
+          </head><body>
+            <h1>AiAnonimyzer</h1>
+            <p>Reindirizzamento all'<a href="beta/">editor beta PDF</a>…</p>
+          </body></html>
+          HTML
+          cp dist/index.html dist/404.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

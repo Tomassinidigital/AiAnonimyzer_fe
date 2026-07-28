@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AiAnonimyzer — Anonimizza i tuoi PDF</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="css/beta.css" />
+</head>
+<body>
+
+  <!-- ===================== Boot overlay (avvio) ===================== -->
+  <div id="boot-overlay" class="loading-overlay" role="status" aria-live="polite">
+    <div class="spinner"></div>
+    <span>Inizializzazione…</span>
+    <small class="loading-sub">Verifico il backend e carico le opzioni…</small>
+  </div>
+
+  <!-- ===================== Topbar (solo nell'editor) ===================== -->
+  <header id="topbar" class="topbar hidden">
+    <div class="brand">
+      <img class="brand-logo" src="assets/logo.svg" alt="" width="30" height="30" />
+      <span class="logo"><span class="ai">Ai</span>Anonimyzer</span>
+      <span class="brand-sub">editor di anonimizzazione</span>
+    </div>
+    <div class="topbar-stats">
+      <span id="mode-badge" class="mode-badge">…</span>
+      <span class="stat"><b id="count-active">0</b> occorrenze redatte</span>
+      <span class="stat"><b id="count-groups">0</b> voci attive</span>
+    </div>
+    <div class="topbar-actions">
+      <button id="btn-restart" class="btn-ghost">Nuovo documento</button>
+      <button id="btn-download-server" class="btn-ghost hidden" title="Redazione distruttiva lato server: onora modalità e gravità del backend (solo entità IA)">Redazione server</button>
+      <button id="btn-download" class="btn-primary" disabled>Scarica PDF protetto</button>
+    </div>
+  </header>
+
+  <!-- ============================ 1) CARICA ============================ -->
+  <section class="view active" data-view="upload">
+    <div class="corner-ribbon" aria-hidden="true">
+      <span class="cr-top">Specializzato in</span>
+      <span class="cr-main">Gare d'appalto</span>
+    </div>
+    <div class="hero">
+      <div class="page-brand">
+        <img src="assets/logo.svg" alt="" width="44" height="44" />
+        <span class="page-brand-name"><span class="ai">Ai</span>Anonimyzer</span>
+      </div>
+      <span class="hero-badge">✓ Rilevamento AI · Conforme al GDPR</span>
+      <h1>Anonimizza i tuoi PDF in pochi secondi</h1>
+      <p class="hero-sub">Il modo rapido per rimuovere dati sensibili dai tuoi documenti PDF.
+        <b>Carica, rivedi i suggerimenti dell'IA, scarica</b> — fatto.</p>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="application/pdf" hidden />
+        <div class="dz-icon">⬆</div>
+        <p class="dz-title">Trascina qui il tuo PDF</p>
+        <p class="dz-or">oppure</p>
+        <div class="dz-actions">
+          <button id="btn-pick" class="btn-primary">Carica un PDF</button>
+          <button id="btn-sample" class="btn-ghost">Prova con un esempio</button>
+        </div>
+      </div>
+
+      <!-- ===== Cosa oscuriamo ===== -->
+      <section class="capture">
+        <h3 class="sec-title">Cosa oscuriamo automaticamente</h3>
+        <p class="capture-sub">Oltre <b>70 tipi</b> di dati personali e sensibili, con un motore <b>specializzato sulle gare telematiche e gli appalti pubblici</b>.</p>
+
+        <!-- Card in evidenza: gare telematiche -->
+        <div class="cap-hero">
+          <div class="cap-hero-head">
+            <span class="cap-ic">🏛️</span>
+            <div><b>Gare telematiche &amp; appalti pubblici</b>
+              <span class="cap-sub">codici gara, ruoli e importi tipici delle procedure</span></div>
+            <span class="cap-badge">motore dedicato</span>
+          </div>
+          <div class="cap-chips">
+            <span class="chip chip-accent">CIG</span>
+            <span class="chip chip-accent">CUP</span>
+            <span class="chip chip-accent">Numero gara</span>
+            <span class="chip">Lotto</span>
+            <span class="chip">Codice CPV</span>
+            <span class="chip">Codice AVCP</span>
+            <span class="chip">Protocollo / Determina</span>
+            <span class="chip">RUP</span>
+            <span class="chip">Stazione appaltante</span>
+            <span class="chip">Operatore economico</span>
+            <span class="chip">Subappaltatore</span>
+            <span class="chip">Commissario di gara</span>
+            <span class="chip">Direttore dei lavori</span>
+            <span class="chip">Importo a base d'asta</span>
+            <span class="chip">Percentuale di ribasso</span>
+            <span class="chip">SIOGG</span>
+          </div>
+        </div>
+
+        <div class="capture-grid">
+          <div class="cap-card">
+            <div class="cap-head"><span class="cap-ic">🆔</span><b>Anagrafici &amp; societari</b></div>
+            <div class="cap-chips">
+              <span class="chip">Nomi e cognomi</span><span class="chip">Ragione sociale</span>
+              <span class="chip">Codice fiscale</span><span class="chip">Partita IVA</span>
+              <span class="chip">Numero REA</span><span class="chip">Iscrizione CCIAA</span>
+            </div>
+          </div>
+          <div class="cap-card">
+            <div class="cap-head"><span class="cap-ic">🏦</span><b>Bancari &amp; importi</b></div>
+            <div class="cap-chips">
+              <span class="chip">IBAN</span><span class="chip">BIC/SWIFT</span><span class="chip">N. conto</span>
+              <span class="chip">Carte di credito</span><span class="chip">Importi</span>
+            </div>
+          </div>
+          <div class="cap-card">
+            <div class="cap-head"><span class="cap-ic">✉️</span><b>Contatti</b></div>
+            <div class="cap-chips">
+              <span class="chip">E-mail</span><span class="chip">PEC</span><span class="chip">Telefono</span>
+              <span class="chip">Indirizzi</span><span class="chip">CAP</span>
+            </div>
+          </div>
+          <div class="cap-card">
+            <div class="cap-head"><span class="cap-ic">📄</span><b>Documenti &amp; previdenza</b></div>
+            <div class="cap-chips">
+              <span class="chip">Carta d'identità</span><span class="chip">Matricola INPS/INAIL</span>
+              <span class="chip">Polizze</span><span class="chip">Targhe</span>
+            </div>
+          </div>
+          <div class="cap-card">
+            <div class="cap-head"><span class="cap-ic">🗺️</span><b>Territoriali &amp; catastali</b></div>
+            <div class="cap-chips">
+              <span class="chip">Codice NUTS</span><span class="chip">ATECO</span>
+              <span class="chip">Foglio / Mappale</span><span class="chip">Particella</span>
+            </div>
+          </div>
+          <div class="cap-card">
+            <div class="cap-head"><span class="cap-ic">⚖️</span><b>Sensibili (art. 9 GDPR)</b></div>
+            <div class="cap-chips">
+              <span class="chip">Dati sanitari</span><span class="chip">Dati giudiziari</span>
+              <span class="chip">Credenziali / password</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="how">
+        <div class="how-step"><span class="how-n">1</span><b>L'IA identifica i PII</b>
+          <p>Il motore individua le informazioni personali e le contrassegna.</p></div>
+        <div class="how-step"><span class="how-n">2</span><b>Tu controlli</b>
+          <p>Esamina, modifica e approva i suggerimenti per l'anonimizzazione.</p></div>
+        <div class="how-step"><span class="how-n">3</span><b>Approva e scarica</b>
+          <p>La decisione finale su cosa rimuovere spetta sempre a te.</p></div>
+      </div>
+
+      <!-- ===== Caratteristiche del software ===== -->
+      <div class="trust-strip">
+        <span class="trust-pill">🇮🇹 Made in Italy</span>
+        <span class="trust-pill">🇪🇺 Ospitato in UE</span>
+        <span class="trust-pill">🛡️ Conforme al GDPR</span>
+        <span class="trust-pill">🤖 IA privata (self-hosted)</span>
+      </div>
+
+      <h3 class="sec-title">Perché AiAnonimyzer</h3>
+      <div class="feat-grid">
+        <div class="feat"><span class="feat-ic">🇮🇹</span><b>Made in Italy</b>
+          <p>Sviluppato in Italia e ottimizzato per i documenti italiani — gare, appalti
+             e PA — con riconoscimento di codici fiscali, IBAN, PEC, CIG/CUP e P. IVA.</p></div>
+        <div class="feat"><span class="feat-ic">🇪🇺</span><b>Ospitato nell'Unione Europea</b>
+          <p>Infrastruttura e dati restano su cloud UE, presso fornitori europei, e non
+             vengono mai condivisi con paesi terzi.</p></div>
+        <div class="feat"><span class="feat-ic">🛡️</span><b>Conforme al GDPR</b>
+          <p>Anonimizzazione dei dati personali (PII) secondo il Regolamento europeo sulla
+             protezione dei dati, con controllo umano prima del salvataggio.</p></div>
+        <div class="feat"><span class="feat-ic">🤖</span><b>IA privata e self-hosted</b>
+          <p>Il rilevamento gira su modelli proprietari nel nostro ambiente sicuro: nessun
+             servizio esterno, i documenti non lasciano l'infrastruttura.</p></div>
+        <div class="feat"><span class="feat-ic">🔒</span><b>Redazione irreversibile</b>
+          <p>Il testo sensibile viene rimosso, non solo coperto: sparisce anche il livello di
+             testo ricercabile sottostante. Non è più recuperabile.</p></div>
+        <div class="feat"><span class="feat-ic">🗑️</span><b>Cancellazione automatica</b>
+          <p>I documenti originali ed elaborati vengono eliminati subito dopo il download:
+             non conserviamo traccia del contenuto.</p></div>
+      </div>
+
+      <h3 class="sec-title">Domande frequenti</h3>
+      <div class="faq">
+        <details><summary>Quali dati riconosce automaticamente?</summary>
+          <p>Oltre <b>70 tipi</b>, con un motore <b>specializzato sulle gare telematiche e gli
+             appalti pubblici</b>: <b>codici gara</b> (CIG, CUP, numero gara, lotto, CPV, codice
+             AVCP, SIOGG), <b>atti</b> (protocollo, determina), <b>ruoli</b> (RUP, stazione
+             appaltante, operatore economico, subappaltatore, commissario, direttore dei lavori)
+             e <b>importi</b> (base d'asta, percentuale di ribasso). Più i dati personali e
+             societari classici: nomi e ragioni sociali, codici fiscali e partite IVA, REA/CCIAA,
+             e-mail e PEC, telefoni, IBAN e dati bancari, indirizzi e CAP, documenti d'identità,
+             matricole INPS/INAIL, dati catastali e categorie particolari art. 9 GDPR (sanitari,
+             giudiziari). Tu rivedi e approvi ogni suggerimento.</p></details>
+        <details><summary>I miei documenti sono al sicuro?</summary>
+          <p>L'elaborazione avviene sul backend AiAnonimyzer, ospitato in UE; i dati non
+             vengono condivisi con terze parti e vengono cancellati dopo il download.</p></details>
+        <details><summary>L'anonimizzazione è definitiva?</summary>
+          <p>Sì. Il processo è irreversibile: rimuove sia il testo visibile sia il livello di
+             testo sottostante. Il contenuto originale non può essere recuperato dal file.</p></details>
+        <details><summary>Gestisce i PDF scansionati?</summary>
+          <p>Se il backend ha l'OCR abilitato, riconosce il testo anche in PDF scansionati e
+             immagini; altrimenti puoi comunque oscurare manualmente le aree.</p></details>
+      </div>
+
+      <p class="hero-foot">Editor <b>front-end</b> in stile redactpdf.io, collegato al
+        <b>backend AiAnonimyzer</b>: il rilevamento dei dati personali è eseguito
+        dai modelli reali del progetto. Creato in 🇮🇹 · Ospitato in 🇪🇺.</p>
+    </div>
+  </section>
+
+  <!-- ============================ 2) ELABORA ============================ -->
+  <section class="view" data-view="processing">
+    <div class="proc-box">
+      <div class="proc-spinner"></div>
+      <h2>Elaborazione del documento</h2>
+      <p id="proc-label" class="proc-label">Analisi in corso…</p>
+      <div id="proc-bar" class="bar"><span></span></div>
+      <p class="proc-hint">Crittografia e rilevamento avvengono localmente nel tuo browser.</p>
+    </div>
+  </section>
+
+  <!-- ============================ 3) EDITOR ============================ -->
+  <section class="view" data-view="editor">
+    <div class="editor">
+      <!-- Rail "focus": compare quando le opzioni sono compresse -->
+      <aside class="focus-rail hidden" id="focus-rail" aria-label="Barra laterale">
+        <img class="focus-logo" src="assets/logo.svg" alt="" width="30" height="30" />
+        <button id="reopen-options" class="icon-btn" title="Mostra le opzioni" aria-label="Mostra le opzioni">⚙</button>
+      </aside>
+
+      <!-- Colonna opzioni (sinistra) -->
+      <aside class="options" id="options-panel">
+        <div class="opt-block">
+          <div class="opt-head">
+            <h3 class="opt-title">Opzioni di rilevamento</h3>
+            <button id="collapse-options" class="icon-btn" title="Comprimi le opzioni" aria-label="Comprimi le opzioni">‹</button>
+          </div>
+          <p id="opt-detection-note" class="opt-note hidden">⚠ Backend non raggiungibile: verifica che il server sia attivo (oppure imposta <code>window.BETA_API_BASE</code>).</p>
+        </div>
+
+        <div id="opt-detection" class="opt-detection">
+          <div class="opt-block">
+            <label class="opt-label">Profilo di rilevamento <span class="apply-tag">nuova analisi</span></label>
+            <div class="seg-control" id="opt-preset">
+              <button class="seg active" data-preset="gdpr">GDPR</button>
+              <button class="seg" data-preset="gdpr_plus">GDPR+</button>
+              <button class="seg" data-preset="gare">Gare</button>
+              <button class="seg" data-preset="debug">Debug</button>
+            </div>
+            <p id="opt-preset-hint" class="hint-sm"></p>
+            <div id="opt-layers-field" class="hidden">
+              <div id="opt-layers" class="layer-list"></div>
+            </div>
+          </div>
+
+          <div class="opt-block">
+            <label class="opt-label" for="opt-conf">Confidenza minima <b id="opt-conf-val">0.82</b> <span class="apply-tag">nuova analisi</span></label>
+            <input type="range" id="opt-conf" min="0" max="1" step="0.01" value="0.82" />
+            <p class="hint-sm">Più alta = più precisione, meno copertura.</p>
+          </div>
+
+          <div class="opt-block">
+            <label class="opt-label">Verifica LLM (giudice) <span class="apply-tag">nuova analisi</span></label>
+            <div class="seg-control" id="opt-verify">
+              <button class="seg" data-verify="on">Attiva</button>
+              <button class="seg active" data-verify="off">Disattiva</button>
+            </div>
+            <div id="opt-approver-field" class="hidden">
+              <label class="opt-label" for="opt-approver">Modello giudice</label>
+              <select id="opt-approver"></select>
+            </div>
+          </div>
+
+          <div class="opt-block">
+            <label class="checkbox-inline"><input type="checkbox" id="opt-fast" checked /> <span>Veloce — solo le prime 4 pagine</span></label>
+          </div>
+        </div>
+
+        <div class="opt-block">
+          <label class="opt-label">Modalità di offuscamento <span class="apply-tag live">subito</span></label>
+          <select id="opt-mode"></select>
+        </div>
+
+        <div class="opt-block" id="opt-sev-field">
+          <label class="opt-label">Livelli di gravità <span class="apply-tag live">subito</span></label>
+          <div id="opt-severities" class="severities"></div>
+        </div>
+
+        <div id="stale-banner" class="stale-banner hidden">
+          <span>Impostazioni di rilevamento modificate.</span>
+          <button id="btn-rerun" class="btn-primary sm">Riesegui analisi</button>
+        </div>
+      </aside>
+
+      <!-- Documento (toolbar + viewer) -->
+      <div class="doc-pane">
+        <div class="pdf-toolbar" id="pdf-toolbar">
+          <div class="tb-group">
+            <button id="tb-undo" class="tb-btn" title="Annulla (Ctrl+Z)" disabled>↶</button>
+            <button id="tb-redo" class="tb-btn" title="Ripristina (Ctrl+Y)" disabled>↷</button>
+          </div>
+          <div class="tb-group">
+            <button id="tb-zoom-out" class="tb-btn" title="Riduci zoom">−</button>
+            <button id="tb-zoom-level" class="tb-btn tb-wide" title="Adatta alla larghezza">100%</button>
+            <button id="tb-zoom-in" class="tb-btn" title="Aumenta zoom">+</button>
+          </div>
+          <div class="tb-group">
+            <button id="tb-prev-page" class="tb-btn" title="Pagina precedente">‹</button>
+            <span class="tb-page">Pag. <b id="tb-page-cur">1</b> / <span id="tb-page-tot">1</span></span>
+            <button id="tb-next-page" class="tb-btn" title="Pagina successiva">›</button>
+          </div>
+          <div class="tb-group">
+            <button id="tb-prev-red" class="tb-btn" title="Redazione precedente" disabled>▲</button>
+            <span class="tb-page"><b id="tb-red-cur">–</b> / <span id="tb-red-tot">–</span></span>
+            <button id="tb-next-red" class="tb-btn" title="Redazione successiva" disabled>▼</button>
+          </div>
+          <div class="tb-group">
+            <button id="tb-del-page" class="tb-btn tb-danger" title="Elimina/ripristina la pagina corrente">🗑 Elimina pagina</button>
+          </div>
+        </div>
+        <div id="viewer" class="viewer">
+          <button id="selection-fab" class="selection-fab hidden">
+            Oscura «<span class="fab-text"></span>»
+          </button>
+        </div>
+      </div>
+
+      <!-- Pannello redazioni -->
+      <aside class="sidebar">
+        <div class="side-block">
+          <h3 class="side-title">Oscura una frase</h3>
+          <p class="side-desc">Digita una frase: verrà cercata in <b>tutto il documento</b> e
+            tutte le occorrenze saranno redatte.</p>
+          <form id="search-form" class="search-form">
+            <input id="search-input" type="text" placeholder="Es. Marco Rossi, un IBAN, un indirizzo…" />
+            <button type="submit" class="btn-primary">Oscura</button>
+          </form>
+          <p class="side-tip">💡 Puoi anche <b>selezionare il testo</b> direttamente nel documento.</p>
+        </div>
+
+        <div class="side-block grow">
+          <div class="side-head">
+            <h3 class="side-title">Suggerimenti IA (PII)</h3>
+            <div class="side-bulk">
+              <button id="btn-select-all" class="link">Tutti</button>·
+              <button id="btn-deselect-all" class="link">Nessuno</button>
+            </div>
+          </div>
+          <div class="ai-filter-wrap">
+            <select id="ai-filter" class="ai-filter" title="Raggruppa o filtra gli elementi"></select>
+          </div>
+          <div id="ai-list" class="list"></div>
+
+          <h3 class="side-title mt">Redazioni manuali</h3>
+          <div id="manual-list" class="list"></div>
+        </div>
+
+        <div class="side-foot">
+          <button id="btn-download-side" class="btn-primary block" disabled>Scarica PDF protetto</button>
+          <p class="side-note">Il PDF finale è <b>rasterizzato</b>: il testo sottostante viene rimosso,
+            la redazione è irreversibile.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Overlay di generazione -->
+  <div id="gen-overlay" class="gen-overlay hidden">
+    <div class="gen-box">
+      <div class="proc-spinner"></div>
+      <p id="gen-label">Generazione del PDF protetto…</p>
+      <div id="gen-bar" class="bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- ===================== Modale introduttiva ===================== -->
+  <div id="intro-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+    <div class="modal-box intro-box">
+      <div class="intro-brand"><img src="assets/logo.svg" alt="" width="40" height="40" />
+        <span class="page-brand-name"><span class="ai">Ai</span>Anonimyzer</span></div>
+      <p class="intro-desc">Individua e offusca <b>oltre 70 tipi</b> di dati personali e sensibili nei
+        PDF di <b>gare telematiche e appalti pubblici</b> — codici gara (CIG, CUP, numero gara),
+        ruoli (RUP, stazione appaltante, operatore economico), importi a base d'asta e ribassi,
+        oltre a nomi, codici fiscali, IBAN, PEC, indirizzi… — combinando più livelli di rilevamento
+        AI. Conforme al GDPR, ospitato in UE.</p>
+      <ol class="intro-points">
+        <li><b>Layer Regole</b> — pattern per i dati strutturati delle gare: CIG, CUP, numero gara, CPV, IBAN, PEC, codici fiscali, importi.</li>
+        <li><b>Layer NER</b> — modelli linguistici per nomi, organizzazioni, ruoli di gara (RUP, operatore economico) e altri dati personali.</li>
+        <li><b>Verifica LLM</b> — un giudice rivaluta ogni rilevamento e taglia i falsi positivi.</li>
+        <li><b>Tu controlli</b> — rivedi, modifica e approvi; scarichi un PDF protetto (redazione irreversibile).</li>
+      </ol>
+      <p class="intro-warning">Il documento viene elaborato dal backend AiAnonimyzer (ospitato in UE) e cancellato dopo il download.</p>
+      <div class="modal-actions">
+        <button id="intro-ok" class="btn-primary" type="button">Accetto</button>
+      </div>
+      <p class="intro-version" id="intro-version"></p>
+    </div>
+  </div>
+
+  <!-- ===================== Modale server non raggiungibile ===================== -->
+  <div id="server-down-modal" class="modal-overlay hidden" role="alertdialog" aria-modal="true" aria-labelledby="server-down-title">
+    <div class="modal-box">
+      <div class="modal-icon">⚠</div>
+      <h2 id="server-down-title" class="modal-title">Backend non raggiungibile</h2>
+      <p class="modal-text">Il sistema non risponde: il server potrebbe non essere avviato o essersi
+        interrotto. Avvia o riavvia il backend, poi premi <strong>Riprova</strong>.
+        (Se stai puntando a un host diverso, imposta <code>window.BETA_API_BASE</code>.)</p>
+      <div class="modal-actions">
+        <button id="server-down-close" class="btn-ghost" type="button">Continua comunque</button>
+        <button id="server-down-retry" class="btn-primary" type="button">Riprova</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF.js + pdf-lib da CDN (stesso approccio del progetto principale) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="js/pdf-engine.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
