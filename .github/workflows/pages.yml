@@ -16,6 +16,7 @@ name: Deploy su GitHub Pages (repo FE)
 #   - Settings → Pages → Source = "GitHub Actions"
 #   - (per la SPA a root) Settings → Secrets and variables → Actions → Variables:
 #       HF_API_BASE_URL = https://<utente>-<space>.hf.space
+#     (se assente vale https://tomassinidigital-aianonymize-v3.hf.space)
 
 on:
   push:
@@ -67,7 +68,7 @@ jobs:
       - name: Build SPA
         id: spa
         env:
-          VITE_API_BASE_URL: ${{ github.event.inputs.api_base_url || vars.HF_API_BASE_URL }}
+          VITE_API_BASE_URL: ${{ github.event.inputs.api_base_url || vars.HF_API_BASE_URL || 'https://tomassinidigital-aianonymize-v3.hf.space' }}
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
         run: |
           if [ -z "$VITE_API_BASE_URL" ]; then
@@ -84,7 +85,7 @@ jobs:
       # ---- Editor beta sotto /beta (self-contained; backend via BETA_API_BASE) ----
       - name: Assembla l'editor beta in /beta
         env:
-          BETA_BACKEND: ${{ github.event.inputs.api_base_url || vars.HF_API_BASE_URL }}
+          BETA_BACKEND: ${{ github.event.inputs.api_base_url || vars.HF_API_BASE_URL || 'https://tomassinidigital-aianonymize-v3.hf.space' }}
         run: |
           if [ ! -d beta-pdf ]; then
             echo "::warning::cartella beta-pdf/ assente: l'editor non verrà pubblicato."
