@@ -57,7 +57,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+          # Niente `cache: pnpm`: se la SPA è saltata lo store pnpm non esiste
+          # e il salvataggio della cache fa fallire il job.
 
       - name: Prepara la cartella di pubblicazione
         run: mkdir -p dist
