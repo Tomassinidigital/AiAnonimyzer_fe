@@ -10,6 +10,7 @@ name: Pubblica sito su GitHub Pages (repo FE pubblico)
 # Pubblica un unico sito Pages:
 #   • ROOT  → rimanda a /beta/
 #   • /beta → l'editor (da beta-pdf/), self-contained, con window.BETA_API_BASE
+#   • /public → SPA React legacy (da public-legacy/), compilata con VITE_API_BASE_URL
 #             iniettato = HF_API_BASE_URL.
 #
 # Prerequisiti nel repo FE:
@@ -76,6 +77,34 @@ jobs:
             echo "BETA_API_BASE iniettato: $BETA_BACKEND"
           fi
           echo "Editor beta pubblicato in /beta ($(du -sh dist/beta | cut -f1))"
+
+      # ---- SPA legacy (React) sotto /public: compilata da public-legacy/ ----
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Compila la SPA legacy in /public
+        env:
+          LEGACY_BACKEND: ${{ github.event.inputs.api_base_url || vars.HF_API_BASE_URL || 'https://tomassinidigital-aianonymize-v3.hf.space' }}
+        run: |
+          if [ ! -d public-legacy ]; then
+            echo "::warning::cartella public-legacy/ assente: la versione public non verrà pubblicata."
+            exit 0
+          fi
+          cd public-legacy
+          pnpm install --frozen-lockfile
+          # base = path del project site (/<repo>/public/); backend iniettato a build-time.
+          VITE_BASE_PATH="/${GITHUB_REPOSITORY#*/}/public/" VITE_API_BASE_URL="$LEGACY_BACKEND" pnpm build
+          cd ..
+          mkdir -p dist/public
+          cp -r public-legacy/dist/. dist/public/
+          echo "SPA legacy pubblicata in /public ($(du -sh dist/public | cut -f1))"
 
       # ---- La root rimanda a /beta ----
       - name: Root minimale verso /beta
