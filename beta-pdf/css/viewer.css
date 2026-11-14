@@ -1,0 +1,112 @@
+/* beta PDF — Editor e viewer: layout, toolbar, pagine, text-layer, box di redazione, pallino dello score. */
+
+/* --------------------------- Editor --------------------------- */
+.editor { flex: 1; display: flex; min-height: 0; }
+
+/* --------------------------- Colonna documento + toolbar --------------------------- */
+.doc-pane { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.pdf-toolbar {
+  display: flex; align-items: center; gap: 14px; padding: 8px 14px; background: var(--panel);
+  border-bottom: 1px solid var(--line); flex: 0 0 auto; flex-wrap: wrap;
+}
+.tb-group { display: flex; align-items: center; gap: 4px; }
+.tb-group + .tb-group { padding-left: 14px; border-left: 1px solid var(--line); }
+.tb-btn {
+  min-width: 32px; height: 32px; padding: 0 8px; border: 1px solid var(--line); background: #fff;
+  border-radius: 8px; font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.tb-btn:hover:not(:disabled) { border-color: var(--blue); color: var(--blue-d); }
+.tb-btn:disabled { opacity: .4; cursor: not-allowed; }
+.tb-btn.tb-wide { min-width: 60px; font-size: 13px; }
+.tb-btn.tb-danger:hover:not(:disabled) { border-color: #ef4444; color: #ef4444; }
+.tb-page { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.tb-page b { color: var(--ink); }
+
+/* Pagina eliminata */
+.page-wrapper.deleted { filter: grayscale(1); }
+.page-wrapper.deleted::after {
+  content: "Pagina eliminata"; position: absolute; inset: 0; display: grid; place-items: center;
+  background: rgba(15,23,42,.55); color: #fff; font-weight: 700; font-size: 15px; letter-spacing: .5px;
+  z-index: 5; border-radius: 4px;
+}
+
+.viewer {
+  flex: 1; overflow: auto; padding: 28px; display: flex; flex-direction: column;
+  align-items: flex-start; gap: 24px; position: relative; background: #eef2f8;
+}
+/* Centrati con margini auto: se la pagina è più larga del viewer resta tutta
+   raggiungibile con lo scroll orizzontale (align-items:center la tagliava a sinistra). */
+.viewer > .page-wrapper, .viewer > .scan-banner { margin-left: auto; margin-right: auto; }
+.page-wrapper {
+  position: relative; background: #fff; box-shadow: 0 6px 22px rgba(15, 23, 42, .14);
+  border-radius: 4px; flex: 0 0 auto;
+}
+.page-wrapper.page-hidden { display: none; }
+.page-canvas { display: block; border-radius: 4px; }
+.page-badge {
+  position: absolute; top: 8px; right: 8px; background: rgba(15, 23, 42, .62); color: #fff;
+  font-size: 11px; padding: 2px 8px; border-radius: 6px; pointer-events: none;
+}
+
+/* Text layer (selezione trasparente di PDF.js) */
+.text-layer {
+  position: absolute; inset: 0; overflow: hidden; opacity: 1; line-height: 1;
+  z-index: 2;
+}
+.text-layer > span {
+  color: transparent; position: absolute; white-space: pre; cursor: text; transform-origin: 0 0;
+}
+.text-layer ::selection { background: rgba(33, 150, 243, .35); }
+
+/* Layer redazioni */
+.redaction-layer { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.redaction-box {
+  position: absolute; background: #000; border-radius: 2px; pointer-events: auto; cursor: pointer;
+  transition: outline .1s;
+}
+.redaction-box:hover { outline: 2px solid var(--blue); outline-offset: 1px; }
+/* Box di un rilevamento IA: contorno nel colore del suo ranking. */
+.redaction-box.ranked { box-shadow: 0 0 0 2px var(--rank, transparent); }
+.redaction-box.ranked.ghost { box-shadow: none; }
+/* Pallino dello score, in alto a destra del box, nel colore del ranking. */
+.rank-dot {
+  position: absolute; width: 10px; height: 10px; border-radius: 50%;
+  border: 1.5px solid #fff; box-shadow: 0 0 0 .5px rgba(15,23,42,.35);
+  pointer-events: auto; cursor: help; z-index: 1;
+}
+.redaction-box.ghost {
+  background: transparent; border: 1.6px dashed var(--ghost, #94a3b8);
+  opacity: .9;
+}
+/* Modalità di mascheramento: il box mostra i caratteri offuscati (M••••) */
+.redaction-box.masked {
+  background: #fff; color: #111; display: flex; align-items: center;
+  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-weight: 600; overflow: hidden; white-space: nowrap; padding: 0 1px;
+  border-radius: 1px; line-height: 1;
+}
+/* Pagine ruotate: il testo mascherato segue la direzione della riga. */
+.redaction-box.masked.rot90 { writing-mode: vertical-rl; padding: 1px 0; }
+.redaction-box.masked.rot270 { writing-mode: vertical-rl; padding: 1px 0; transform: rotate(180deg); }
+.redaction-box.masked.rot180 { transform: rotate(180deg); }
+.scan-banner {
+  align-self: stretch; background: #fdf5ee; border: 1px solid #f4e2d0; color: #b25a11;
+  border-radius: 10px; padding: 12px 16px; font-size: 13px; font-weight: 600;
+}
+.redaction-box.flash { animation: flash .9s ease; }
+@keyframes flash { 0%, 100% { outline: 2px solid transparent; } 40% { outline: 3px solid var(--blue); outline-offset: 2px; } }
+
+.selection-fab {
+  position: absolute; z-index: 20; transform: translateX(-50%); background: var(--ink); color: #fff;
+  border: 0; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25); white-space: nowrap;
+}
+.selection-fab::after {
+  content: ""; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+  border: 5px solid transparent; border-top-color: var(--ink); border-bottom: 0;
+}
+
+@media (max-width: 1100px) {
+  .editor { flex-direction: column; }
+}

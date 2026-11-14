@@ -1,0 +1,55 @@
+/* beta PDF — Base: token di colore, reset, bottoni, viste, spinner e barre di avanzamento condivisi. */
+
+:root {
+  --blue: #2196f3;
+  --blue-d: #1976d2;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(15, 23, 42, .08);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--bg); color: var(--ink); }
+button { font-family: inherit; cursor: pointer; }
+
+/* --------------------------- Bottoni --------------------------- */
+.btn-primary {
+  background: var(--blue); color: #fff; border: 0; padding: 11px 18px;
+  border-radius: 10px; font-weight: 600; font-size: 14px; transition: .15s;
+}
+.btn-primary:hover { background: var(--blue-d); }
+.btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+.btn-primary.block { width: 100%; }
+.btn-ghost.block { width: 100%; margin-top: 8px; }
+.btn-ghost {
+  background: #fff; color: var(--ink); border: 1px solid var(--line);
+  padding: 10px 16px; border-radius: 10px; font-weight: 600; font-size: 14px; transition: .15s;
+}
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue-d); }
+.link { background: none; border: 0; color: var(--blue-d); font-weight: 600; font-size: 12px; padding: 0 3px; }
+.link:hover { text-decoration: underline; }
+.hidden { display: none !important; }
+
+/* --------------------------- Views --------------------------- */
+.view { display: none; min-height: 100vh; }
+.view.active { display: block; }
+[data-view="editor"].active { display: flex; flex-direction: column; }
+/* Editor a tutta altezza (sotto la topbar da 60px): la toolbar di cambio pagina
+   resta sempre visibile e scorre solo il viewer, che mostra una pagina alla volta. */
+@media (min-width: 1101px) {
+  [data-view="editor"].active { height: calc(100vh - 60px); min-height: 0; }
+}
+
+.proc-spinner, .gen-box .proc-spinner {
+  width: 44px; height: 44px; border: 4px solid #dbe4f0; border-top-color: var(--blue);
+  border-radius: 50%; margin: 0 auto 8px; animation: spin .9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.bar { height: 8px; background: #e6edf6; border-radius: 999px; overflow: hidden; }
+.bar > span { display: block; height: 100%; width: 0; background: var(--blue); border-radius: 999px; transition: width .3s ease; }
+.btn-primary.sm { padding: 7px 12px; font-size: 12.5px; }

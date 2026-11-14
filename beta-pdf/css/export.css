@@ -1,0 +1,6 @@
+/* beta PDF — Overlay di generazione del PDF protetto. */
+
+/* --------------------------- Overlay generazione --------------------------- */
+.gen-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, .5); display: grid; place-items: center; z-index: 60; }
+.gen-box { background: #fff; border-radius: var(--radius); padding: 28px 34px; width: 360px; text-align: center; box-shadow: var(--shadow); }
+.gen-box p { margin: 8px 0 14px; font-size: 14px; color: var(--ink); }
