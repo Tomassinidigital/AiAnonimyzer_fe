@@ -1,0 +1,98 @@
+[
+  {
+    "file": "documento_gara_fake.pdf",
+    "category": "Gare",
+    "title": "Domanda di partecipazione alla procedura aperta — Servizi di manutenzione",
+    "issuer": "COMUNE DI SAN GIOVANNI VALDARNO",
+    "pages": 1,
+    "level": "semplice"
+  },
+  {
+    "file": "aggiudicazione_servizio.pdf",
+    "category": "Gare",
+    "title": "Comunicazione di aggiudicazione — Servizio di refezione scolastica",
+    "issuer": "UNIONE DEI COMUNI DEL CASENTINO",
+    "pages": 1,
+    "level": "semplice"
+  },
+  {
+    "file": "iscrizione_nido.pdf",
+    "category": "GDPR",
+    "title": "Domanda di iscrizione al nido d'infanzia — Anno educativo 2024/2025",
+    "issuer": "COMUNE DI CASCINA — SERVIZI EDUCATIVI",
+    "pages": 1,
+    "level": "semplice"
+  },
+  {
+    "file": "verbale_pronto_soccorso.pdf",
+    "category": "Sanitario",
+    "title": "Verbale di pronto soccorso e lettera di dimissione",
+    "issuer": "OSPEDALE SAN DONATO DI AREZZO — PRONTO SOCCORSO",
+    "pages": 1,
+    "level": "semplice"
+  },
+  {
+    "file": "nomina_ctu.pdf",
+    "category": "Giudiziario",
+    "title": "Decreto di nomina del consulente tecnico d'ufficio — Sezione civile",
+    "issuer": "TRIBUNALE ORDINARIO DI AREZZO",
+    "pages": 1,
+    "level": "semplice"
+  },
+  {
+    "file": "verbale_commissione_gara.pdf",
+    "category": "Gare",
+    "title": "Verbale n. 3 della commissione giudicatrice — Fornitura di arredi sanitari",
+    "issuer": "AZIENDA SANITARIA LOCALE TOSCANA SUD EST",
+    "pages": 3,
+    "level": "complesso"
+  },
+  {
+    "file": "determina_aggiudicazione.pdf",
+    "category": "Gare",
+    "title": "Determinazione dirigenziale n. 589 del 18/04/2024 — Aggiudicazione",
+    "issuer": "COMUNE DI MONTEVARCHI",
+    "pages": 3,
+    "level": "complesso"
+  },
+  {
+    "file": "disciplinare_gara.pdf",
+    "category": "Gare",
+    "title": "Disciplinare di gara — Manutenzione delle strade provinciali",
+    "issuer": "PROVINCIA DI GROSSETO — CENTRALE UNICA DI COMMITTENZA",
+    "pages": 3,
+    "level": "complesso"
+  },
+  {
+    "file": "offerta_operatore_economico.pdf",
+    "category": "Gare",
+    "title": "Offerta economica e dichiarazioni — Lotto 1, CIG A1C7E39F05",
+    "issuer": "STRADE MAREMMA S.R.L.",
+    "pages": 3,
+    "level": "complesso"
+  },
+  {
+    "file": "fascicolo_dipendente.pdf",
+    "category": "GDPR",
+    "title": "Fascicolo personale del dipendente — Scheda anagrafica",
+    "issuer": "LOGISTICA ADRIATICA S.P.A. — UFFICIO RISORSE UMANE",
+    "pages": 3,
+    "level": "complesso"
+  },
+  {
+    "file": "pratica_sanitaria.pdf",
+    "category": "Sanitario",
+    "title": "Relazione clinica per la commissione medica di invalidità civile",
+    "issuer": "AZIENDA OSPEDALIERO-UNIVERSITARIA CAREGGI",
+    "pages": 3,
+    "level": "complesso"
+  },
+  {
+    "file": "ricorso_tribunale.pdf",
+    "category": "Giudiziario",
+    "title": "Ricorso per accertamento tecnico preventivo — Sezione civile",
+    "issuer": "TRIBUNALE ORDINARIO DI SIENA",
+    "pages": 3,
+    "level": "complesso"
+  }
+]

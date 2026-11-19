@@ -1,0 +1,30 @@
+/* publicv3 — Accettazione dei Termini prima di ogni invio. */
+.consent-box { text-align: left; max-width: 70%; } /* fino al 70% della larghezza della pagina */
+@media (max-width: 800px) { .consent-box { max-width: 100%; } } /* su schermi stretti: tutta la larghezza della pagina */
+.consent-box .modal-title { text-align: center; }
+.consent-lead p { color: var(--ink); font-size: 14px; line-height: 1.5; margin: 0 0 8px; white-space: pre-line; }
+.consent-h { font-size: 14px; margin: 14px 0 6px; }
+.consent-list { margin: 0 0 10px; padding-left: 20px; font-size: 13px; line-height: 1.5; color: var(--ink); }
+.consent-list li { margin-bottom: 5px; }
+.consent-doc { font-size: 13px; margin: 8px 0 12px; }
+.consent-doc a { color: var(--blue-d); font-weight: 600; }
+.consent-check {
+  display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5;
+  padding: 10px 12px; margin: 0 0 8px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
+}
+.consent-check:has(input:checked) { border-color: var(--blue); background: #f3f9ff; }
+.consent-check input { margin-top: 3px; width: 18px; height: 18px; flex: none; }
+.consent-check ul { margin: 6px 0 0; padding-left: 18px; }
+.consent-box .hint-sm { margin: 4px 0 14px; }
+.consent-error { color: #b91c1c; background: #fef2f2; border: 1px solid #fecaca; border-radius: 9px; padding: 8px 10px; font-size: 12.5px; margin: 0 0 10px; }
+
+/* Box in evidenza: il file caricato in precedenza è ancora nella memoria del browser. */
+.consent-file {
+  display: flex; gap: 12px; align-items: flex-start; margin: 0 0 14px; padding: 12px 14px;
+  background: #e8f3fe; border: 2px solid var(--blue); border-radius: 12px;
+}
+.consent-file.hidden { display: none; }
+.consent-file-ic { font-size: 26px; line-height: 1; flex: none; }
+.consent-file b { font-size: 14.5px; word-break: break-all; }
+.consent-file-size { margin-left: 6px; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.consent-file p { margin: 4px 0 0; font-size: 13px; line-height: 1.45; color: var(--ink); }

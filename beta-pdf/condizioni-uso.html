@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Termini e condizioni d'uso — AiAnonimyzer</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link rel="stylesheet" href="css/base.css" />
+  <style>
+    /* Pagina documentale: scorre normalmente (base.css fissa solo l'altezza di html/body). */
+    html, body { height: auto; }
+    .doc { max-width: 800px; margin: 0 auto; padding: 24px 16px 64px; line-height: 1.6; font-size: 15px; }
+    .doc-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+    .doc-top a { color: var(--blue-d); font-weight: 600; text-decoration: none; }
+    .doc h1 { font-size: 26px; line-height: 1.25; margin: 12px 0 6px; }
+    .doc h2 { font-size: 18px; margin: 30px 0 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+    .doc h3 { font-size: 15px; margin: 18px 0 6px; }
+    .doc p, .doc li { margin: 6px 0; }
+    .doc ul, .doc ol { padding-left: 22px; }
+    .doc .meta { color: var(--muted); font-size: 13px; }
+    .doc .box { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 14px 0; }
+    .doc .box ul { margin: 6px 0; }
+    .doc .toc { columns: 2; column-gap: 24px; font-size: 14px; }
+    .doc .toc a { color: var(--blue-d); text-decoration: none; }
+    .doc .toc li { break-inside: avoid; }
+    .doc a { color: var(--blue-d); }
+    .doc .key { background: #eef6ff; border: 1px solid #cfe3fb; border-radius: 12px; padding: 14px 16px; margin: 14px 0; }
+    @media (max-width: 600px) { .doc .toc { columns: 1; } .doc h1 { font-size: 22px; } }
+    @media print { .doc-top a { display: none; } .doc { max-width: none; } }
+    .doc table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 8px 0 12px; }
+    .doc th, .doc td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+    .doc th { background: #f1f5f9; }
+    .doc .table-wrap { overflow-x: auto; }
+  </style>
+</head>
+<body>
+<main class="doc">
+  <div class="doc-top">
+    <a href="./">← Torna al servizio</a>
+    <span class="meta">Versione <b id="terms-version">1.2</b> del 18/11/2026</span>
+  </div>
+
+  <h1>Termini e condizioni d'uso — Servizio di oscuramento assistito di PDF (versione sperimentale)</h1>
+  <p class="meta">Includono l'Informativa privacy (<a href="#informativa">Allegato A</a>).</p>
+
+  <nav class="box" aria-label="Indice">
+    <ul class="toc">
+      <li><a href="#dati-fornitore">Dati del fornitore</a></li>
+      <li><a href="#premessa">Premessa e identità del Gestore</a></li>
+      <li><a href="#art-1">1 – Definizioni</a></li>
+      <li><a href="#art-2">2 – Natura del Servizio</a></li>
+      <li><a href="#art-3">3 – Accettazione e requisiti di accesso</a></li>
+      <li><a href="#art-4">4 – Usi vietati e documenti non ammessi</a></li>
+      <li><a href="#art-5">5 – Dichiarazioni e garanzie dell'Utente</a></li>
+      <li><a href="#art-6">6 – Intelligenza artificiale, limiti tecnici e verifica obbligatoria</a></li>
+      <li><a href="#art-7">7 – Nessuna consulenza professionale</a></li>
+      <li><a href="#art-8">8 – Esclusione di garanzie</a></li>
+      <li><a href="#art-9">9 – Limitazione di responsabilità</a></li>
+      <li><a href="#art-10">10 – Manleva a carico dell'Utente</a></li>
+      <li><a href="#art-11">11 – Disponibilità, sospensione e cessazione</a></li>
+      <li><a href="#art-12">12 – Forza maggiore</a></li>
+      <li><a href="#art-13">13 – Trattamento tecnico dei file, conservazione e sicurezza</a></li>
+      <li><a href="#art-14">14 – Segnalazione di abusi e contenuti illeciti</a></li>
+      <li><a href="#art-15">15 – Protezione dei dati personali e ruoli</a></li>
+      <li><a href="#art-16">16 – Proprietà intellettuale e licenza</a></li>
+      <li><a href="#art-17">17 – Modifiche dei Termini</a></li>
+      <li><a href="#art-18">18 – Legge applicabile, foro e controversie</a></li>
+      <li><a href="#art-19">19 – Disposizioni finali</a></li>
+      <li><a href="#approvazione-specifica">Approvazione specifica delle clausole</a></li>
+      <li><a href="#informativa">Allegato A – Informativa privacy</a></li>
+    </ul>
+  </nav>
+
+  <section id="dati-fornitore" class="key">
+    <h2 style="border-top:0;margin-top:0;padding-top:0">Dati del fornitore</h2>
+    <ul>
+      <li><b>Gestore del Servizio:</b> il titolare del sito indicato sotto, persona fisica, che agisce fuori da qualsiasi attività d'impresa, arte o professione.</li>
+      <li><b>Contatto unico:</b> <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a>. Per ogni comunicazione, comprese le richieste delle autorità, il punto di contatto è questo indirizzo.</li>
+      <li><b>Sito:</b> <a href="https://aianonymize.seekweb.it/">https://aianonymize.seekweb.it/</a></li>
+      <li><b>Fornitore di hosting:</b> IONOS (<a href="https://www.ionos.it">IONOS SE, Germania</a>), su cui girano i server del Servizio, con data center nell'Unione europea. Per l'infrastruttura IONOS agisce come responsabile del trattamento (art. 28 GDPR).</li>
+      <li><b>Fornitori di intelligenza artificiale:</b> nessuno. I modelli sono eseguiti sul server del Servizio (art. 6.1).</li>
+      <li><b>Servizi di terzi caricati dal browser:</b> cdnjs/Cloudflare, per le librerie PDF.js e pdf-lib, che non riceve i File (<a href="#informativa">Allegato A</a>, punto 6). I caratteri tipografici sono serviti dal server del Servizio.</li>
+    </ul>
+  </section>
+
+  <section id="premessa">
+    <h2>Premessa e identità del Gestore</h2>
+    <p>Questi Termini disciplinano l'uso del servizio web AiAnonimyzer (il «Servizio»), una versione sperimentale e gratuita di oscuramento assistito di documenti PDF.</p>
+    <ul>
+      <li><b>Gestore:</b> il titolare del sito indicato sotto, persona fisica.</li>
+      <li><b>Sito:</b> <a href="https://aianonymize.seekweb.it/">https://aianonymize.seekweb.it/</a></li>
+      <li><b>Punto di contatto unico</b> (utenti, autorità, segnalazioni, richieste privacy): <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a></li>
+      <li><b>Versione dei Termini:</b> 1.2 del 18/11/2026</li>
+    </ul>
+    <p>Il Gestore agisce a titolo personale, senza scopo di lucro e fuori da qualsiasi attività d'impresa, arte o professione. Usando il Servizio l'Utente dichiara di aver letto e accettato questi Termini. Chi non li accetta non deve usare il Servizio.</p>
+  </section>
+
+  <section id="art-1">
+    <h2>Art. 1 – Definizioni</h2>
+    <ul>
+      <li><b>Servizio:</b> il portale web e le funzioni di oscuramento assistito di PDF, incluse le componenti di intelligenza artificiale.</li>
+      <li><b>Gestore:</b> la persona indicata in premessa.</li>
+      <li><b>Utente:</b> la persona fisica maggiorenne che usa il Servizio per scopi personali.</li>
+      <li><b>File:</b> il PDF caricato o elaborato dall'Utente tramite il Servizio.</li>
+      <li><b>Risultato:</b> il PDF o l'output prodotto dal Servizio a partire dal File.</li>
+      <li><b>Dati Personali:</b> ogni informazione riferita a una persona identificata o identificabile (art. 4 GDPR).</li>
+      <li><b>Dati Particolari:</b> dati su salute, vita sessuale, origine razziale o etnica, opinioni politiche, convinzioni religiose o filosofiche, appartenenza sindacale, dati genetici e biometrici (art. 9 GDPR), e dati su condanne penali e reati (art. 10 GDPR).</li>
+      <li><b>Sistema di IA:</b> il sistema automatico, anche basato su modelli di apprendimento, che il Servizio usa per individuare e oscurare informazioni.</li>
+      <li><b>Uso Professionale:</b> ogni uso nell'ambito di un'attività d'impresa, arte o professione, di un ente o di una pubblica amministrazione, o per conto di terzi.</li>
+      <li><b>Termini:</b> il presente documento e l'Informativa privacy richiamata all'art. 15 (<a href="#informativa">Allegato A</a>).</li>
+    </ul>
+  </section>
+
+  <section id="art-2">
+    <h2>Art. 2 – Natura del Servizio</h2>
+    <p><b>2.1</b> Il Servizio è una versione sperimentale (beta), offerta a titolo gratuito e per uso esclusivamente personale e non professionale. Il Gestore non riceve alcun corrispettivo, diretto o indiretto: nessun abbonamento, nessuna pubblicità, nessuna donazione condizionata all'uso.</p>
+    <p><b>2.2</b> Il Servizio può contenere errori, essere incompleto, lento o interrotto e cambiare senza preavviso. Non è stato certificato né validato per alcuno scopo specifico.</p>
+    <p><b>2.3</b> Il Servizio offre un oscuramento assistito di informazioni nei PDF. Non è un servizio di anonimizzazione: il Risultato può contenere ancora Dati Personali e non va considerato «anonimo» ai sensi del considerando 26 del GDPR.</p>
+    <p><b>2.4</b> Il Gestore assume un'obbligazione di mezzi, non di risultato. Tra Gestore e Utente non nasce alcun rapporto di mandato, consulenza, deposito o custodia dei File.</p>
+    <p><b>2.5</b> L'Utente riconosce che la natura gratuita e sperimentale fa parte dell'oggetto del Servizio e delle sue legittime aspettative.</p>
+  </section>
+
+  <section id="art-3">
+    <h2>Art. 3 – Accettazione e requisiti di accesso</h2>
+    <p><b>3.1 Accettazione.</b> L'accesso richiede l'accettazione attiva dei Termini, con una spunta dedicata. Per le clausole elencate nella sezione finale «<a href="#approvazione-specifica">Approvazione specifica delle clausole</a>» serve inoltre una seconda spunta, distinta dalla prima, che le richiama per intero. Entrambe sono richieste prima di <b>ogni</b> invio di un File e di ogni nuova elaborazione dei dati: il server rifiuta le richieste prive di un'accettazione valida, che vale per una sola operazione. Fanno eccezione i documenti d'esempio forniti dal Servizio, che contengono solo dati inventati. Per poter provare l'accettazione il Gestore registra la versione dei Termini accettata, la data, l'ora e l'indirizzo IP troncato.</p>
+    <p><b>3.2 Maggiore età.</b> Il Servizio è riservato a chi ha almeno 18 anni.</p>
+    <p><b>3.3 Uso personale.</b> L'Utente dichiara di agire per scopi estranei a qualsiasi attività imprenditoriale, commerciale, artigianale o professionale.</p>
+    <p><b>3.4 Credenziali e accessi.</b> Se il Servizio richiede credenziali, sono personali e non cedibili: l'Utente risponde di ogni uso fatto con esse. È vietato aggirare o disattivare misure di sicurezza e limiti tecnici. L'accesso ottenuto aggirando tali misure, o con credenziali altrui, non è autorizzato e può essere segnalato alle autorità.</p>
+  </section>
+
+  <section id="art-4">
+    <h2>Art. 4 – Usi vietati e documenti non ammessi</h2>
+    <p><b>4.1 Uso Professionale vietato.</b> È vietato usare il Servizio per attività professionali, d'impresa, di enti o pubbliche amministrazioni, o per conto di terzi. Chi lo fa, compresi avvocati, medici, commercialisti e altri professionisti, agisce senza autorizzazione del Gestore.</p>
+    <p><b>4.2 File vietati.</b> È vietato caricare:</p>
+    <ul>
+      <li>Dati Particolari di persone diverse dall'Utente;</li>
+      <li>documenti riferiti a minori;</li>
+      <li>atti coperti da segreto (istruttorio, professionale, d'ufficio, di Stato) o classificati;</li>
+      <li>documenti del Fascicolo sanitario elettronico, cartelle cliniche o referti di terzi;</li>
+      <li>documenti che l'Utente non ha titolo di trattare;</li>
+      <li>materiale illecito, di sfruttamento di minori, violento, diffamatorio o lesivo di diritti di terzi;</li>
+      <li>file contenenti malware o codice dannoso.</li>
+    </ul>
+    <p><b>4.3 Propri Dati Particolari.</b> Il Gestore sconsiglia di caricare anche i propri Dati Particolari. Chi lo fa agisce di propria iniziativa e a proprio rischio (art. 15.4).</p>
+    <p><b>4.4 Altri divieti.</b> È vietato: l'ingegneria inversa; lo scraping o l'accesso automatizzato non autorizzato; i test di sicurezza senza consenso scritto del Gestore; il sovraccarico del Servizio; l'elusione dei limiti; la rivendita o la messa a disposizione del Servizio a terzi; ogni uso illecito.</p>
+    <p><b>4.5 Conseguenze.</b> In caso di violazione il Gestore può sospendere l'accesso, cancellare i File, segnalare l'abuso alle autorità e chiedere la manleva dell'art. 10.</p>
+    <p><b>4.6 Uso Professionale comunque avvenuto.</b> Se un Uso Professionale avviene in violazione di questo articolo, l'Utente ne risponde in via esclusiva: è lui a dover rispettare gli obblighi di legge e deontologici (compresi il segreto professionale e l'art. 28 GDPR). Il Gestore non offre accordi di nomina a responsabile del trattamento e non accetta incarichi.</p>
+  </section>
+
+  <section id="art-5">
+    <h2>Art. 5 – Dichiarazioni e garanzie dell'Utente</h2>
+    <p><b>5.1</b> L'Utente dichiara e garantisce che:</p>
+    <ul>
+      <li>ha almeno 18 anni e usa il Servizio per scopi personali;</li>
+      <li>è titolare dei diritti sul File o ha il diritto di usarlo e di farlo elaborare;</li>
+      <li>per i Dati Personali di terzi contenuti nel File ha una base giuridica valida per trattarli e ha adempiuto agli obblighi verso gli interessati;</li>
+      <li>non viola segreti, diritti d'autore, riservatezza o altri diritti di terzi;</li>
+      <li>non carica File vietati dall'art. 4;</li>
+      <li>fornisce informazioni veritiere, compreso l'indirizzo email quando scrive al Gestore.</li>
+    </ul>
+    <p><b>5.2</b> L'Utente è l'unico responsabile della scelta di caricare un File e dell'uso, della conservazione, della condivisione, della pubblicazione o del deposito del Risultato, con ogni conseguenza, compresa la mancata anonimizzazione.</p>
+    <p><b>5.3</b> Il Gestore non esamina i File e non ne verifica preventivamente la liceità.</p>
+  </section>
+
+  <section id="art-6">
+    <h2>Art. 6 – Intelligenza artificiale, limiti tecnici e verifica obbligatoria</h2>
+    <p><b>6.1 Uso dell'IA.</b> Il Servizio usa Sistemi di IA per individuare e oscurare informazioni. Sono modelli open source eseguiti sul server del Servizio, senza ricorrere ad API di IA di terzi: tra questi il modello linguistico spaCy <i>it_core_news_lg</i>, i modelli di riconoscimento di entità <i>DeepMount00/Italian_NER_XXL_v2</i>, <i>DeepMount00/universal_ner_ita</i> e <i>Davlan/distilbert-base-multilingual-cased-ner-hrl</i>, il modello di similarità semantica <i>nickprock/sentence-bert-base-italian-uncased</i> e, se l'Utente attiva la «verifica LLM», un modello linguistico Gemma. Il Risultato è generato in modo automatico.</p>
+    <p><b>6.2 Limiti noti.</b> Il Sistema di IA può non individuare, o oscurare per errore, informazioni. In particolare possono sfuggire:</p>
+    <ul>
+      <li>metadati, testo nascosto o su livelli, annotazioni, allegati incorporati, cronologia delle revisioni e miniature;</li>
+      <li>immagini, scansioni, firme, QR code e codici a barre;</li>
+      <li>intestazioni, piè di pagina e nomi dei file;</li>
+      <li>identificatori indiretti e combinazioni di informazioni che permettono di risalire a una persona;</li>
+      <li>contenuti in formati, font o lingue non supportati, o in PDF protetti o danneggiati.</li>
+    </ul>
+    <p><b>6.3 Nessuna garanzia di anonimizzazione.</b> Il Gestore non garantisce che il Risultato sia completo, corretto, anonimo o irreversibile. Il Risultato è un oscuramento assistito e può contenere ancora Dati Personali.</p>
+    <p><b>6.4 Verifica umana obbligatoria.</b> Prima di qualsiasi uso, condivisione, pubblicazione o deposito, l'Utente deve controllare il Risultato integralmente, pagina per pagina, metadati compresi, confrontandolo con l'originale. L'Utente non deve fare affidamento esclusivo sul Servizio ed è l'unico responsabile della decisione di usare il Risultato.</p>
+    <p><b>6.5 Risultati variabili.</b> Lo stesso File può produrre risultati diversi. Il Gestore non garantisce la riproducibilità né l'assenza di errori o di contenuti inesatti generati dall'IA.</p>
+    <p><b>6.6 Nessun addestramento.</b> I File e i Risultati non sono usati per addestrare o migliorare modelli di IA. I modelli sono eseguiti sul server del Servizio e i File non sono inviati a fornitori di modelli di IA.</p>
+  </section>
+
+  <section id="art-7">
+    <h2>Art. 7 – Nessuna consulenza professionale</h2>
+    <p>Il Servizio non fornisce consulenza legale, medica, fiscale o in materia di protezione dei dati. Il Risultato non è un parere sulla conformità al GDPR e non sostituisce la valutazione di un professionista. Non è idoneo ad adempiere obblighi di legge, quali la pubblicazione di provvedimenti giudiziari (art. 52 Codice privacy), gli obblighi di trasparenza o l'accesso agli atti.</p>
+  </section>
+
+  <section id="art-8">
+    <h2>Art. 8 – Esclusione di garanzie</h2>
+    <p><b>8.1</b> Nei limiti consentiti dalla legge il Servizio è fornito «così com'è» e «come disponibile», senza garanzie espresse o implicite, comprese quelle di commerciabilità, idoneità a uno scopo particolare, accuratezza, completezza, continuità, sicurezza assoluta e assenza di errori o virus.</p>
+    <p><b>8.2</b> Il Gestore non ha alcun obbligo di assistenza, manutenzione o aggiornamento.</p>
+    <p><b>8.3</b> Il Gestore non conserva copie dei File e non può ripristinarli. L'Utente conserva gli originali e le copie che gli servono.</p>
+    <p><b>8.4</b> Restano ferme le garanzie e i diritti che la legge non consente di escludere.</p>
+  </section>
+
+  <section id="art-9">
+    <h2>Art. 9 – Limitazione di responsabilità</h2>
+    <p><b>9.1 Esclusione.</b> Nei limiti massimi consentiti dalla legge e salvo quanto previsto all'art. 9.3, il Gestore non risponde dei danni diretti o indiretti, della perdita di dati, del mancato guadagno, dei danni reputazionali, delle sanzioni e dei costi legali subiti dall'Utente. Ciò vale in particolare per i danni derivanti da: errori o omissioni del Sistema di IA; informazioni non oscurate; uso, diffusione o deposito del Risultato; interruzioni o indisponibilità del Servizio; violazione dei Termini da parte dell'Utente.</p>
+    <p><b>9.2 Tetto massimo.</b> In ogni caso la responsabilità complessiva del Gestore verso l'Utente, per qualunque causa, non può superare € 100,00.</p>
+    <p><b>9.3 Limiti inderogabili.</b> Nulla in questi Termini esclude o limita la responsabilità del Gestore per dolo o colpa grave, per morte o lesioni personali, né i diritti inderogabili dell'Utente. Restano fermi i diritti che il GDPR riconosce alle persone interessate nei confronti del Gestore.</p>
+    <p><b>9.4 Diligenza.</b> Le parti riconoscono che il Servizio è gratuito, sperimentale e reso nell'interesse esclusivo dell'Utente. La responsabilità del Gestore va quindi valutata con minor rigore e, per i problemi tecnici di speciale difficoltà, è limitata ai casi di dolo o colpa grave.</p>
+    <p><b>9.5 Terzi.</b> Le esclusioni e i limiti di questo articolo valgono anche a favore di collaboratori, fornitori e licenzianti del Gestore.</p>
+    <p><b>9.6 Consumatori.</b> Se l'Utente fosse qualificato consumatore e il Gestore professionista, questo articolo si applica solo nei limiti consentiti dal Codice del consumo.</p>
+  </section>
+
+  <section id="art-10">
+    <h2>Art. 10 – Manleva a carico dell'Utente</h2>
+    <p><b>10.1</b> L'Utente si obbliga a manlevare e tenere indenne il Gestore, i suoi collaboratori e fornitori da pretese, danni, perdite, sanzioni (nei limiti consentiti dalla legge) e spese legali ragionevoli derivanti da:</p>
+    <ul>
+      <li>la violazione dei Termini o di norme di legge;</li>
+      <li>i File caricati e il loro contenuto;</li>
+      <li>l'uso, la diffusione o il deposito del Risultato;</li>
+      <li>la violazione di diritti di terzi, compresi i diritti sui Dati Personali;</li>
+      <li>gli accessi effettuati con le credenziali dell'Utente.</li>
+    </ul>
+    <p><b>10.2 Procedura.</b> Il Gestore informa l'Utente della pretesa appena possibile. L'Utente collabora e può assumere la difesa, ma non può transigere senza il consenso del Gestore se la transazione lo impegna.</p>
+    <p><b>10.3 Limiti.</b> La manleva non limita i diritti delle persone interessate verso il Gestore e non opera per dolo o colpa grave del Gestore. Resta ferma l'azione di regresso dell'art. 82, par. 5, GDPR.</p>
+  </section>
+
+  <section id="art-11">
+    <h2>Art. 11 – Disponibilità, sospensione e cessazione</h2>
+    <p><b>11.1</b> Il Gestore può in ogni momento, anche senza preavviso, modificare il Servizio, imporre limiti (dimensione dei File, numero di richieste, durata), sospenderlo o cessarlo, senza indennizzo.</p>
+    <p><b>11.2</b> Il Gestore può sospendere o bloccare l'accesso dell'Utente per violazione dei Termini, sospetto uso illecito, esigenze di sicurezza o ordine dell'autorità. Se la legge lo consente, comunica all'Utente la motivazione al contatto email indicato.</p>
+    <p><b>11.3</b> L'Utente può smettere di usare il Servizio in qualsiasi momento.</p>
+  </section>
+
+  <section id="art-12">
+    <h2>Art. 12 – Forza maggiore</h2>
+    <p>Il Gestore non risponde di ritardi o inadempimenti dovuti a eventi fuori dal suo ragionevole controllo, tra cui guasti dei fornitori di hosting, cloud o IA, attacchi informatici, interruzioni di rete o energia, provvedimenti delle autorità e modifiche normative.</p>
+  </section>
+
+  <section id="art-13">
+    <h2>Art. 13 – Trattamento tecnico dei file, conservazione e sicurezza</h2>
+    <p><b>13.1 Dove e per quanto.</b> Il Servizio è ospitato su server IONOS con data center nell'Unione europea. Il PDF è inviato al server solo per l'analisi: viene scritto in un file temporaneo, di norma nella memoria (RAM), che subito dopo l'estrazione del testo è sovrascritto con zeri e cancellato. Il testo estratto, i rilevamenti e le posizioni restano solo nella memoria del server e sono cancellati automaticamente entro <span class="ttl-min">5</span> minuti dall'ultima azione sul documento, oppure subito se l'Utente sceglie «Cancella subito i dati dal server». Il PDF sicuro (immagine) è generato nel browser dell'Utente; il PDF ricercabile (testo) è generato sul server, che a tal fine riceve di nuovo il File e lo distrugge subito dopo la generazione. Non esistono copie o backup dei File e dei Risultati.</p>
+    <p><b>13.2 Log.</b> Il Gestore conserva solo log tecnici minimi (data e ora, indirizzo IP, esito, versione dei Termini), senza contenuti né nomi dei File, per un massimo di 30 giorni, per sicurezza e prevenzione degli abusi.</p>
+    <p><b>13.3 Sicurezza.</b> Il Gestore adotta misure ragionevoli e adeguate al rischio (art. 32 GDPR), tra cui cifratura in transito (HTTPS), nessun salvataggio su disco dei dati dell'analisi e accessi limitati. Nessuna misura garantisce sicurezza assoluta.</p>
+    <p><b>13.4 Obblighi dell'Utente.</b> L'Utente carica solo il necessario, scarica subito il Risultato ed è consapevole che, dopo la cancellazione automatica, File e Risultato non sono recuperabili.</p>
+    <p><b>13.5 Violazioni.</b> In caso di violazione dei dati il Gestore agisce secondo legge, anche informando le autorità e gli interessati quando previsto. L'Utente collabora alle verifiche.</p>
+    <p><b>13.6 Fornitori.</b> Il Gestore si avvale di IONOS (IONOS SE, Germania) per l'hosting dei server, con data center nell'Unione europea. IONOS agisce come responsabile del trattamento (art. 28 GDPR) per l'infrastruttura e per i dati tecnici di cui all'art. 13.2. L'elaborazione dei File avviene sul server del Servizio, senza ricorrere a fornitori di modelli di IA. Un eventuale trasferimento di dati verso Paesi extra-SEE avviene solo con le garanzie degli artt. 45-46 GDPR. Il sito carica inoltre alcune risorse da servizi di terzi (font e libreria di lettura dei PDF): l'elenco è nell'<a href="#informativa">Allegato A</a>.</p>
+  </section>
+
+  <section id="art-14">
+    <h2>Art. 14 – Segnalazione di abusi e contenuti illeciti</h2>
+    <p><b>14.1 Come segnalare.</b> Chiunque può segnalare contenuti o usi illeciti scrivendo a <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a>. La segnalazione indica: i motivi per cui il contenuto è ritenuto illecito; dove si trova o come riconoscerlo; nome e email del segnalante; una dichiarazione di buona fede.</p>
+    <p><b>14.2 Cosa fa il Gestore.</b> Il Gestore esamina la segnalazione con tempestività e, se opportuno, rimuove o disabilita il contenuto e sospende l'Utente. Comunica la decisione e la motivazione al segnalante e all'Utente, salvo divieti di legge.</p>
+    <p><b>14.3 Nessuna sorveglianza generale.</b> Il Gestore non ha un obbligo generale di sorveglianza né di ricerca attiva di illeciti (art. 8 DSA; art. 17 D.Lgs. 70/2003).</p>
+    <p><b>14.4 Autorità.</b> Il Gestore collabora con le autorità e, se ha il sospetto di reati che minacciano la vita o la sicurezza di persone, li segnala alle autorità competenti.</p>
+    <p><b>14.5 Reclami.</b> L'Utente può contestare una decisione scrivendo allo stesso indirizzo; il Gestore risponde entro 30 giorni.</p>
+  </section>
+
+  <section id="art-15">
+    <h2>Art. 15 – Protezione dei dati personali e ruoli</h2>
+    <p><b>15.1 Informativa.</b> Il trattamento dei Dati Personali è descritto nell'Informativa privacy riportata in <a href="#informativa">Allegato A</a> a questi Termini, che l'Utente dichiara di aver letto.</p>
+    <p><b>15.2 Ruoli.</b> Per i Dati Personali di terzi contenuti nei File, l'Utente è l'unico responsabile della liceità del trattamento, della base giuridica e dell'informativa agli interessati. Il Gestore tratta i File solo per eseguire la funzione richiesta dall'Utente, per il tempo strettamente necessario e senza altre finalità. Per i dati propri del Servizio (log, contatti) il Gestore è titolare del trattamento.</p>
+    <p><b>15.3 Nessuna nomina a responsabile.</b> Il Servizio non è destinato a trattamenti per i quali sia richiesta la nomina del Gestore a responsabile del trattamento (art. 28 GDPR). Tale nomina non è offerta.</p>
+    <p><b>15.4 Propri Dati Particolari.</b> Se, nonostante lo sconsiglio dell'art. 4.3, l'Utente carica propri Dati Particolari, lo fa di propria iniziativa e presta consenso esplicito (art. 9, par. 2, lett. a, GDPR) alla sola elaborazione tecnica necessaria all'oscuramento. Può revocare il consenso smettendo di usare il Servizio.</p>
+    <p><b>15.5 Diritti.</b> Per esercitare i diritti previsti dal GDPR, compresi quelli delle persone citate nei File, è possibile scrivere a <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a>. È sempre possibile proporre reclamo al Garante per la protezione dei dati personali.</p>
+  </section>
+
+  <section id="art-16">
+    <h2>Art. 16 – Proprietà intellettuale e licenza</h2>
+    <p><b>16.1</b> Il Servizio, il software e i marchi restano del Gestore o dei suoi licenzianti. Il Gestore concede all'Utente una licenza d'uso personale, gratuita, non esclusiva, non trasferibile e revocabile.</p>
+    <p><b>16.2</b> I File e i Risultati restano dell'Utente. L'Utente concede al Gestore una licenza limitata e temporanea, solo per l'elaborazione tecnica necessaria al Servizio.</p>
+  </section>
+
+  <section id="art-17">
+    <h2>Art. 17 – Modifiche dei Termini</h2>
+    <p><b>17.1</b> Il Gestore può modificare i Termini per giustificato motivo (cambi normativi, tecnici, di funzione o di rischio). Le nuove versioni sono pubblicate su questa pagina con data e numero di versione. Le versioni precedenti sono disponibili su richiesta a <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a>.</p>
+    <p><b>17.2</b> Le modifiche rilevanti sono comunicate con almeno 15 giorni di preavviso tramite avviso nel Servizio, e richiedono una nuova accettazione. Le modifiche imposte dalla legge o dall'autorità, o che riducono il rischio, possono avere effetto immediato.</p>
+    <p><b>17.3</b> Chi non accetta le nuove versioni deve smettere di usare il Servizio. L'uso successivo alla nuova accettazione vale come accettazione.</p>
+  </section>
+
+  <section id="art-18">
+    <h2>Art. 18 – Legge applicabile, foro e controversie</h2>
+    <p><b>18.1</b> I Termini sono regolati dalla legge italiana.</p>
+    <p><b>18.2</b> Per ogni controversia è competente in via esclusiva il foro del luogo di residenza del Gestore, salvo il foro inderogabile del consumatore (art. 66-bis Codice del consumo) e le norme imperative di protezione dello Stato di residenza del consumatore (art. 6 Reg. UE 593/2008).</p>
+    <p><b>18.3</b> Prima di agire in giudizio le parti tentano una soluzione amichevole scrivendo a <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a> e attendendo 30 giorni. Ciò non limita i diritti dei consumatori né il diritto di rivolgersi al Garante o ad altre autorità.</p>
+  </section>
+
+  <section id="art-19">
+    <h2>Art. 19 – Disposizioni finali</h2>
+    <p><b>19.1 Accordo completo.</b> I Termini e l'Informativa privacy sono l'intero accordo tra Gestore e Utente sul Servizio.</p>
+    <p><b>19.2 Separabilità.</b> Se una clausola è nulla o inefficace, resta valido il resto (art. 1419 c.c.). La clausola nulla si applica nella misura massima consentita dalla legge.</p>
+    <p><b>19.3 Mancato esercizio.</b> Il mancato esercizio di un diritto non è rinuncia ad esso.</p>
+    <p><b>19.4 Cessione.</b> Il Gestore può cedere i Termini a un successore nel Servizio, dandone avviso. L'Utente non può cederli.</p>
+    <p><b>19.5 Lingua e comunicazioni.</b> Prevale il testo italiano. Le comunicazioni avvengono tramite il Servizio o l'email indicata dall'Utente.</p>
+    <p><b>19.6 Sopravvivenza.</b> Gli artt. 5, 6, 8, 9, 10, 15 e 18 restano efficaci dopo la cessazione dell'uso del Servizio.</p>
+  </section>
+
+  <section id="approvazione-specifica">
+    <h2>Approvazione specifica delle clausole (artt. 1341 e 1342 c.c.)</h2>
+    <p>L'Utente dichiara di aver letto con attenzione e di approvare specificamente le seguenti clausole:</p>
+    <ul>
+      <li>art. 6.3 e 6.4 (nessuna garanzia di anonimizzazione; verifica obbligatoria);</li>
+      <li>art. 8 (esclusione di garanzie);</li>
+      <li>art. 9 (limitazione di responsabilità);</li>
+      <li>art. 10 (manleva);</li>
+      <li>art. 11 (modifica, sospensione e cessazione del Servizio);</li>
+      <li>art. 12 (forza maggiore);</li>
+      <li>art. 13.4 (cancellazione automatica e irrecuperabilità dei File);</li>
+      <li>art. 17 (modifiche unilaterali dei Termini);</li>
+      <li>art. 18 (foro competente e tentativo di conciliazione).</li>
+    </ul>
+    <p><b>Modalità di approvazione.</b> L'approvazione avviene con una spunta dedicata, distinta da quella di accettazione generale, in una finestra che riporta per intero l'elenco delle clausole. È richiesta prima di ogni invio di un File e di ogni nuova elaborazione dei dati (esclusi i documenti d'esempio). Il server registra data, ora, versione dei Termini e indirizzo IP troncato.</p>
+  </section>
+
+  <section id="informativa">
+    <h2>Allegato A – Informativa privacy (artt. 13 e 14 GDPR)</h2>
+
+    <h3>1. Titolare del trattamento</h3>
+    <p>Il Gestore del Servizio, persona fisica (il «Gestore»). Contatto unico, anche per esercitare i diritti: <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a>. Non è stato designato un responsabile della protezione dei dati (DPO), non essendo obbligatorio.</p>
+
+    <h3>2. Quali dati tratta il Servizio</h3>
+    <ul>
+      <li><b>Contenuto del File</b> (testo estratto, informazioni rilevate dall'IA e loro posizione nelle pagine). Il Gestore lo tratta solo per eseguire l'oscuramento richiesto. Resta nella memoria del server fino a <span class="ttl-min">5</span> minuti dall'ultima azione, o fino alla cancellazione immediata scelta dall'Utente (art. 13.1). Il PDF originale non è conservato.</li>
+      <li><b>Dati tecnici di connessione</b> (data e ora, indirizzo IP, esito, versione dei Termini accettata), per sicurezza, prevenzione degli abusi e prova dell'accettazione. Conservazione massima: 30 giorni.</li>
+      <li><b>Messaggi</b> inviati a <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a> (indirizzo email e contenuto), conservati per il tempo necessario a rispondere e a gestire la richiesta.</li>
+      <li><b>Dati nel browser e token tecnico</b>: soltanto strumenti tecnici, descritti di seguito.</li>
+    </ul>
+    <p id="cookie"><b>Cookie e strumenti analoghi.</b> Il sito non imposta cookie e non utilizza strumenti di tracciamento, di profilazione o di analisi statistica. Impiega esclusivamente gli strumenti tecnici elencati di seguito, strettamente necessari a erogare il Servizio richiesto dall'Utente (art. 122, comma 1, D.Lgs. 196/2003) e pertanto non soggetti a consenso, conformemente alle Linee guida del Garante per la protezione dei dati personali del 10 giugno 2021. Il Gestore non ha accesso a questi dati.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nome</th><th>Tipo e posizione</th><th>Finalità</th><th>Durata</th><th>Categoria</th></tr></thead>
+        <tbody>
+          <tr><td><code>beta.samples.opened</code></td><td>localStorage del browser</td><td>Elenco dei documenti di esempio già aperti, contrassegnati come «già aperto»</td><td>Fino alla cancellazione dei dati del sito da parte dell'Utente</td><td>Tecnico di funzionalità</td></tr>
+          <tr><td><code>beta.privacy-notice.dismissed</code></td><td>localStorage del browser</td><td>Memorizza la chiusura dell'avviso sui dati nel browser, che così non viene riproposto</td><td>Fino alla cancellazione dei dati del sito da parte dell'Utente</td><td>Tecnico di funzionalità</td></tr>
+          <tr><td>Token di accettazione dei Termini</td><td>Memoria della pagina, mai salvato nel browser</td><td>Prova dell'accettazione dei Termini per un singolo invio o rielaborazione del File</td><td>Monouso; scade entro pochi minuti (al massimo 5) e si perde alla chiusura o al ricaricamento della pagina</td><td>Tecnico strettamente necessario</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Criteri di classificazione.</b> È considerato tecnico lo strumento che serve unicamente a fornire una funzione richiesta dall'Utente, non è letto da terzi e non è usato per riconoscere l'Utente tra siti diversi né per profilarlo. L'Utente può cancellare in qualsiasi momento i dati del sito dalle impostazioni del proprio browser: il Servizio continua a funzionare, perdendo soltanto le preferenze indicate.</p>
+
+    <h3>3. Finalità e basi giuridiche</h3>
+    <ul>
+      <li>Eseguire il Servizio richiesto dall'Utente: art. 6, par. 1, lett. b), GDPR.</li>
+      <li>Sicurezza, prevenzione degli abusi, prova dell'accettazione dei Termini e difesa di un diritto: legittimo interesse del Gestore, art. 6, par. 1, lett. f), GDPR.</li>
+      <li>Rispondere alle richieste dell'Utente e adempiere obblighi di legge o richieste dell'autorità: art. 6, par. 1, lett. b) e c), GDPR.</li>
+      <li>Propri Dati Particolari caricati dall'Utente nonostante lo sconsiglio dell'art. 4.3: consenso esplicito, art. 9, par. 2, lett. a), GDPR (art. 15.4 dei Termini).</li>
+    </ul>
+    <p>Il conferimento dei dati tecnici è necessario per usare il Servizio. Senza di essi il Servizio non può essere reso.</p>
+
+    <h3>4. Intelligenza artificiale e decisioni automatizzate</h3>
+    <p>Il Servizio usa Sistemi di IA per suggerire quali informazioni oscurare (art. 6 dei Termini). Non è un sistema di IA generativo e non prende decisioni che producono effetti giuridici o incidono in modo analogo sulle persone (art. 22 GDPR): l'Utente verifica e decide. Non c'è profilazione. I File non sono usati per addestrare modelli di IA. In linguaggio semplice: l'IA può sbagliare, quindi il controllo finale è sempre dell'Utente. L'Utente può opporsi al trattamento dei propri dati non caricando il File o smettendo di usare il Servizio, e può scrivere al contatto indicato (art. 4, commi 3 e 4, Legge 23 settembre 2025, n. 132).</p>
+
+    <h3>5. Destinatari</h3>
+    <p>I dati non sono venduti né diffusi. Possono trattarli, per conto del Gestore, IONOS (IONOS SE, Germania), fornitore di hosting dei server, in qualità di responsabile del trattamento (art. 28 GDPR) e, se previsto dalla legge, le autorità competenti.</p>
+
+    <h3>6. Trasferimenti fuori dallo Spazio economico europeo</h3>
+    <p>L'elaborazione dei File avviene sul server del Servizio nell'Unione europea. Quando il browser dell'Utente carica le librerie PDF.js e pdf-lib da <b>cdnjs / Cloudflare</b> (cdnjs.cloudflare.com), questo fornitore riceve l'indirizzo IP e i dati tecnici della richiesta. I caratteri tipografici sono invece serviti direttamente dal server del Servizio, senza richieste a terzi. Il fornitore può avere sede o infrastrutture fuori dall'UE: i trasferimenti avvengono secondo gli artt. 45-46 GDPR (decisione di adeguatezza o garanzie adeguate). Il fornitore non riceve il File né il suo contenuto.</p>
+
+    <h3>7. Diritti</h3>
+    <p>L'interessato può chiedere accesso (art. 15), rettifica (16), cancellazione (17), limitazione (18), portabilità (20) e opporsi al trattamento (21), e revocare il consenso dato, senza pregiudicare la liceità del trattamento già svolto. Può scrivere a <a href="mailto:seekweb.info@gmail.com">seekweb.info@gmail.com</a>; il Gestore risponde entro un mese. Poiché il contenuto dei File non è conservato oltre i pochi minuti indicati, dopo la cancellazione non può né ritrovare né estrarre i dati di una persona dai File. L'interessato può sempre proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it">www.garanteprivacy.it</a>).</p>
+
+    <h3>8. Minori</h3>
+    <p>Il Servizio è riservato a chi ha almeno 18 anni (art. 3.2 dei Termini). Il Gestore non raccoglie consapevolmente dati di minori di 14 anni (art. 4, comma 4, Legge 23 settembre 2025, n. 132).</p>
+
+    <h3>9. Quadro normativo di riferimento</h3>
+    <p>Regolamento (UE) 2016/679 (GDPR) e D.Lgs. 196/2003 (Codice privacy); Regolamento (UE) 2024/1689 (AI Act) e Legge 23 settembre 2025, n. 132; Codice civile, in particolare artt. 1229, 1341 e 1342; Codice del consumo; D.Lgs. 70/2003.</p>
+  </section>
+
+  <p class="meta" style="margin-top:32px">Versione 1.2 del 18/11/2026. Le versioni precedenti sono disponibili su richiesta.</p>
+</main>
+
+<script>
+  /* I minuti di conservazione arrivano dal backend (CACHE_TTL); se non risponde resta il valore predefinito. */
+  fetch("/api/system/ui-config").then((r) => (r.ok ? r.json() : null)).then((cfg) => {
+    if (!cfg || !cfg.doc_ttl) return;
+    const min = String(Math.max(1, Math.round(cfg.doc_ttl / 60)));
+    document.querySelectorAll(".ttl-min").forEach((el) => { el.textContent = min; });
+  }).catch(() => {});
+</script>
+</body>
+</html>

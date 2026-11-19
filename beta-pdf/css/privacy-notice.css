@@ -1,0 +1,15 @@
+/* publicv3 — Avviso su dati nel browser e token tecnico (sotto modali e toast). */
+#privacy-notice {
+  position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 70;
+  width: min(760px, calc(100vw - 24px)); display: flex; gap: 14px; align-items: center;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, .18); font-size: 12.5px; line-height: 1.5;
+}
+#privacy-notice.hidden { display: none; }
+#privacy-notice p { margin: 0; flex: 1; color: var(--ink); }
+#privacy-notice a { color: var(--blue-d); font-weight: 600; }
+#privacy-notice button { flex: none; padding: 8px 16px; font-size: 13px; }
+@media (max-width: 600px) {
+  #privacy-notice { flex-direction: column; align-items: stretch; }
+  #privacy-notice button { min-height: 44px; }
+}
